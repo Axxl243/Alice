@@ -1,0 +1,54 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #2b3cab;
+    color: rgb(196, 198, 199);
+}
+
+header{
+    border:#7eab2b 2px solid;
+    border-radius: 20px;
+}
+nav{
+    border:#12197a 2px solid;
+    border-radius: 20px;
+}
+
+main{
+    border: #7a1252 2px solid;
+}
+
+footer{
+    border: #127a52 2px solid;
+}
+
+@media only screen and (max-width: 600px) {
+    body{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/*Diseño del menu*/
+ul{
+    display: flex;
+    float: left;
+    list-style: none;
+}
+
+li{
+    text-decoration: none;
+}
+
+ul li a{
+    background-color: #7eab2b;
+}
+
+ul li a:hover{
+    background-color: yellow;
+    color: black;
+}
