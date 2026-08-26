@@ -1,0 +1,18 @@
+{%extends 'Plantilla.html'%}
+{%block title%}
+    Login
+{%endblock%}
+
+{% block cabecera %}
+    Iniciar sesion
+{% endblock%}
+    
+{%block main%}
+<div>
+    <form action = "/login" method = "POST">
+        <label for="lUser">Usuario</label>
+        <input type="text" name="lUser" id="lUser" placeholder= "ingrese su Usuario">
+        <input type="submit" value="Iniciar sesion">
+    </form>
+</div>
+{%endblock%}

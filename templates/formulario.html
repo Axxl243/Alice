@@ -1,0 +1,44 @@
+{% extends 'Plantilla.html' %} 
+
+{% block titulo %} 
+
+formulario 
+
+{% endblock %} 
+
+
+{% block cabecera %} 
+
+formulario de registro 
+
+{% endblock %} 
+
+{% block main %}
+<section>
+    formulario de registro
+    <div>
+        <form action="/formulario" method="POST">
+            <label for="rNombre">Nombre(s):</label>
+            <input type="text" id="Nombre" name="Nombre" placeholder="Ingrese su nombre o nombres" required>
+
+            <label for="rApellidos">Apellidos:</label>
+            <input type="text" id="Apellidos" name="Apellidos" placeholder="Ingrese sus apellidos" required>    
+
+            <label for="rCorreo">Correo:</label>
+            <input type="email" id="Correo" name="Correo" placeholder="Ingrese su correo electrónico" required>
+
+            <label for="rPass">Contraseña:</label>
+            <input type="password" id="rPass" name="rPass" placeholder="Ingrese su contraseña" required>
+
+            <label for="rConfirmar">COnfirmar contraseña</label>
+            <input type="password" id="rConfirmar" name="rConfirmar" placeholder="Confirme su contraseña" required>
+            <br>
+            <input type="checkbox" id="rTYC" name="rTYC" required>
+            <label for="rTYC">Aceptar <a href="#">Terminos y Condiciones</a> del servicio</label> 
+            <br>
+            <input type="submit" value="Crear cuenta">
+
+        </form>
+    </div>
+</section>
+{% endblock %}       

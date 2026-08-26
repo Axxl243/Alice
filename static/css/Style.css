@@ -1,0 +1,37 @@
+@media only screen and (max-width: 600px) {
+    body{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+*{
+    box-sizing: border-box;
+
+}
+
+body{
+    background-color: #78114f;
+    color: white;
+}
+
+header{
+    border: cyan 2px solid;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 1em;
+}
+
+nav{
+    border: yellow 2px solid;
+}
+
+main{
+    border: red 2px solid;
+}
+
+footer{
+    border: gray 2px solid;
+}

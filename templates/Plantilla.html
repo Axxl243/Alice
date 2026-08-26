@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/Style.css" type="text/css">
+    <title>APP
+      {% block titulo %}
+      {% endblock %}
+    </title>
+</head>
+<body>
+    <header>
+        <i class="fa-solid fa-folder--open"></i>
+        <h1>{% block cabecera %}    
+        {% endblock%}</h1>
+    </header>
+    
+    <nav>
+    <ul>
+        <li>
+            <a href="/">Home</a>
+        </li>
+        <li>
+            <a href="/formulario">formulario</a>
+        </li>
+        <li>
+            <a href="/login">login</a>
+        </li>    
+        <li>
+            <a href="/about">acercade</a>
+        </li>
+    </ul>
+    <p>Este va a ser un menu</p>
+    </nav>
+    <main>
+    {% block main %} 
+    
+    {% endblock %}
+    </main>
+
+    <footer>
+    {% block pie %}
+
+    {% endblock %}
+    </footer>
+</html>
