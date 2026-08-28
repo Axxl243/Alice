@@ -1,26 +1,38 @@
 from flask import Flask, render_template, request 
+from dotenv import load_dotenv
+
+import os
+
+load_dotenv()
 
 app= Flask(__name__)
+
+app.config ['APP_KEY'] = os.getenv('APP_KEY')
 
 @app.route("/")#Route principal
 def index():
     return (render_template('index.html'))
 
-
+#ruta de formulario de registro
 @app.route("/formulario", methods=['GET', 'POST'])
 def registro():
     return render_template('formulario.html')
 
+#Ruta de perfil
 @app.route('/Perfil')
 def perfil():
     return render_template('perfil.html')
 
+#Ruta de login o inico de sesion
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
     return render_template('login.html')
 
-if "__main__" == "__name__":
-    app.run(host="0.0.0.0", port=8088, debug=True)
+#Nuevo puerto 
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8080, debug=True)
 
 #primero se debe de dar click derecho, corrrer python en la terminal y luego en consola se debe de usaar el comando 
-#flask --app server run --debug (debug crea el modo depurador para guardar cambios en tiempo real sin necesidad de reiniciar el servidor)ñ 
+#flask --app Server run --debug (debug crea el modo depurador para guardar cambios en tiempo real sin necesidad de reiniciar el servidor)ñ 
+#Ya no se usara el flask --app, etc. Dado que usaremos el comando python3 Server.py para correr el servidor, ya que es mas facil y rapido
+# con el nuevo puerto 8080, ya que el puerto 5000 es usado por otro programa y no se pueden usar los dos al mismo tiempo  
