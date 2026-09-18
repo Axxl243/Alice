@@ -1,34 +1,48 @@
-from flask import Flask, render_template, request 
-from dotenv import load_dotenv
+from flask import Flask, render_template, request, url_for
+from config_Server import config
 
 import os
 
-load_dotenv()
 
+#variables globales
 app= Flask(__name__)
+app.config.from_object(config)
 
-app.config ['APP_KEY'] = os.getenv('APP_KEY')
-
+#Rutas 
 @app.route("/")#Route principal
-def index():
+def index(): 
     return (render_template('index.html'))
 
-#ruta de formulario de registro
+#ruta de registro
 @app.route("/formulario", methods=['GET', 'POST'])
 def registro():
     return render_template('formulario.html')
 
+
+
+#Ruta de login
+@app.route('/login', methods = ['GET', 'POST'])
+def login():
+    msj = "No data"
+
+    if request.method == 'POST':
+        logUser = request.form.get('lUser')
+        logPass = request.form.get('lPass')
+
+        msj = f"Nombre: {logUser} Contraseña: {logPass}"
+
+        return render_template('login.html', msj=msj)
+
+
+
+    return render_template('login.html', msj=msj)
+
 #Ruta de perfil
-@app.route('/Perfil')
+@app.route('/perfil')
 def perfil():
     return render_template('perfil.html')
 
-#Ruta de login o inico de sesion
-@app.route('/login', methods = ['GET', 'POST'])
-def login():
-    return render_template('login.html')
-
-#Nuevo puerto 
+#Ruta inventario 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080, debug=True)
 

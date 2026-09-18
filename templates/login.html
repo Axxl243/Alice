@@ -9,20 +9,21 @@
     
 {%block main%}
 <div>
-    #campo para usuarios 
+
     <form action = "/login" method = "POST">
-        <label for="lUser">Usuario</label>
-        <input type="text" name="lUser" id="lUser" placeholder= "ingrese su Usuario" required>
-        <label for="lpass">Contraseña</label>
-        <input type="pass" name="lPass" id="luser" placeholder="ingrese su contraseña" required>
-        <input type="submit" value="Iniciar sesion">
+        <label for="logUser">Usuario</label>
+        <input type="text" name="logUser" id="logUser" placeholder= "ingrese su Usuario" required>
     </form>
 
-    #campos para contraseñas
+    
     <div class="form-group">
-        <label for="lPass">Contraseña</label>
-        <input type="text" class="form-control" name="lUser" id="lUser" aria-describedby="helpid" placeholder= "ingrese su Contraseña">
-        <small id="lUser" class="form-text" text-muted>Mensaje de error</small>
+        <label for="logPass">Contraseña</label>
+        <input type="text" class="form-control" name="logPass" id="logPass" aria-describedby="helpid" placeholder= "ingrese su Contraseña">
+        <small id="logPass" class="form-text" text-muted>Mensaje de error</small>
     </div>
+
+    <input class="btn btn-primary" type="submit" value="Iniciar sesion">
+
+    <p>{{msj}}</p>
 </div>
 {%endblock%}
