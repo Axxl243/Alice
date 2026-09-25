@@ -1,23 +1,45 @@
-from flask import Flask, render_template, request, url_for
+from flask import Flask, flash, render_template, request, url_for, flash
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms.validators import InputRequired, Email, Length, EqualTo, DataRequired
+
 from config_Server import config
-
-import os
-
 
 #variables globales
 app= Flask(__name__)
 app.config.from_object(config)
 
+
 #Rutas 
 @app.route("/")#Route principal
 def index(): 
-    return (render_template('index.html'))
+    flash("Bienvenido!!, espero que encuentres lo que necesites :D", "danger")
+    return (render_template("index.html"))
+
+class Registro(FlaskForm):
+    
+    rNombre = StringField("Nombre", validators=[Length(min=3, max=50, message="Ingrese un nombre valido")])
+    rApellidos = StringField("Apellidos", validators=[InputRequired(), Length(min=1, max=150)])
+    rCorreo = StringField("Correo", validators=[InputRequired(), Email()])
+    rPass = PasswordField("Contraseña", validators=[DataRequired(message="Este campo es obligatorio"), Length(min=8, message="La contraseña debe tener al menos 8 caracteres")])
+    rConfirmar = PasswordField("Confirmar Contraseña", validators=[DataRequired(message="Este campo es obligatorio"), EqualTo("rPass", message="Las contraseñas no coinciden")])
+    rTYC = BooleanField("Aceptar Términos y Condiciones", validators=[DataRequired()])
+    rSubmit = SubmitField("Registrarse")
+
 
 #ruta de registro
 @app.route("/formulario", methods=['GET', 'POST'])
 def registro():
-    return render_template('formulario.html')
+    form = Registro()
+    if form.validate_on_submit():
+        inNombre = form.rNombre.data
+        inApellidos = form.rApellidos.data
+        inCorreo = form.rCorreo.data
+        inPass = form.rPass.data
+        inConfirmar = form.rConfirmar.data
+        inTYC = form.rTYC.data
 
+    return render_template('formulario.html', form=form)
 
 
 #Ruta de login
@@ -29,12 +51,10 @@ def login():
         logUser = request.form.get('lUser')
         logPass = request.form.get('lPass')
 
-        msj = f"Nombre: {logUser} Contraseña: {logPass}"
+        msj = f"Nombre: {logUser}, Contraseña: {logPass}"
 
         return render_template('login.html', msj=msj)
-
-
-
+   
     return render_template('login.html', msj=msj)
 
 #Ruta de perfil

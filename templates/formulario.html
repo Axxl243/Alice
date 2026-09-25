@@ -9,36 +9,104 @@ formulario
 
 {% block cabecera %} 
 
-formulario de registro 
+PixelMarket
 
 {% endblock %} 
 
 {% block main %}
 <section>
-    formulario de registro
+    Crea una cuenta nueva
     <div>
-        <form action="/formulario" method="POST">
-            <label for="rNombre">Nombre(s):</label>
-            <input type="text" id="Nombre" name="Nombre" placeholder="Ingrese su nombre o nombres" required>
+        <form action="{{ url_for('registro') }}" method="POST">
+            {{form.hidden_tag()}}
+            <!--label for="rNombre">Nombre(s):</!--label>-->
+            <!--input type="text" id="Nombre" name="Nombre" placeholder="Ingrese su nombre o nombres" required>-->
+            {{form.rNombre.label (class="form-label")}}
+            {{form.rNombre(class="form-control")}}
+            {% if form.rNombre.errors %}
+               <div class="text-danger">
+                   {% for error in form.rNombre.errors %}
+                      <small>{{error}}</small>
+                   {% endfor %}
+            {% endif %}
 
-            <label for="rApellidos">Apellidos:</label>
-            <input type="text" id="Apellidos" name="Apellidos" placeholder="Ingrese sus apellidos" required>    
+            {{form.rApellidos.label (class="form-label")}}
+            {{form.rApellidos(class="form-control")}}
+            {% if form.rApellidos.errors %}
+               <div class="text-danger">
+                   {% for error in form.rApellidos.errors %}
+                      <small>{{error}}</small>
+                   {% endfor %}
+                </div>
+            {% endif %}
 
+            <!--<label for="rApellidos">Apellidos:</label> -->
+            <!--<input type="text" id="Apellidos" name="Apellidos" placeholder="Ingrese sus apellidos" required>-->   
+            
+            
+            {{form.rCorreo.label (class="form-label")}}
+            {{form.rCorreo(class="form-control")}}
+            {% if form.rCorreo.errors %}
+               <div class="text-danger">
+                   {% for error in form.rCorreo.errors %}
+                      <small>{{error}}</small>
+                   {% endfor %}
+                </div>
+            {% endif %}
+
+            
+            <!--<br>
             <label for="rCorreo">Correo:</label>
             <input type="email" id="Correo" name="Correo" placeholder="Ingrese su correo electrónico" required>
+            <br>-->
 
-            <label for="rPass">Contraseña:</label>
-            <input type="password" id="rPass" name="rPass" placeholder="Ingrese su contraseña" required>
+            {{form.rPass.label (class="form-label")}}
+            {{form.rPass(class="form-control")}}
+            {% if form.rPass.errors %}
+               <div class="text-danger">
+                   {% for error in form.rPass.errors %}
+                      <small>{{error}}</small>
+                   {% endfor %}
+                </div>
+            {% endif %}
 
-            <label for="rConfirmar">COnfirmar contraseña</label>
-            <input type="password" id="rConfirmar" name="rConfirmar" placeholder="Confirme su contraseña" required>
+            {{form.rConfirmar.label (class="form-label")}}
+            {{form.rConfirmar(class="form-control")}}
+            {% if form.rConfirmar.errors %}
+               <div class="text-danger">
+                   {% for error in form.rConfirmar.errors %}
+                      <small>{{error}}</small>
+                   {% endfor %}
+                </div>
+            {% endif %}
+
+            {{form.rTYC.label (class="form-label")}}
+            {{form.rTYC(class="form-check-input")}}
+            {% if form.rTYC.errors %}
+               <div class="text-danger">
+                   {% for error in form.rTYC.errors %}
+                      <small>{{error}}</small>
+                   {% endfor %}
+                </div>
+            {% endif %}
             <br>
-            <input type="checkbox" id="rTYC" name="rTYC" required>
+            <!--<input type="checkbox" id="rTYC" name="rTYC" required>
             <label for="rTYC">Aceptar <a href="#">Terminos y Condiciones</a> del servicio</label> 
-            <br>
-            <input type="submit" value="Crear cuenta">
-
+            <br>-->
+            {{form.rSubmit(id="rSubmit", class="btn btn-primary", disabled=true)}}
+            <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancelar</a>
         </form>
+        <script>
+          const checkbox = document.getElementById("rTYC");
+          const btnsubmit = document.getElementById("rSubmit");  
+
+          checkbox.addEventListener("change", function(){
+            btnsubmit.disabled = !this.checked;
+          });
+        </script>
     </div>
+</section>
+<section>
+ Tienes alguna duda
 </section>
 {% endblock %}       
