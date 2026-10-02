@@ -1,13 +1,19 @@
-from flask import Flask, flash, render_template, request, url_for, flash
+from flask import Flask, flash, render_template, request, url_for, flash, redirect
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import InputRequired, Email, Length, EqualTo, DataRequired
 
+from werkzeug.security import generate_password_hash, check_password_hash 
+
 from config_Server import config
+
+from flask_mysqldb import MySQL
 
 #variables globales
 app= Flask(__name__)
 app.config.from_object(config)
+
+database = MySQL(app)
 
 
 #Rutas 
@@ -38,6 +44,21 @@ def registro():
         inPass = form.rPass.data
         inConfirmar = form.rConfirmar.data
         inTYC = form.rTYC.data
+
+        #values = f"nombre: {inNombre}, apellidos: {inApellidos}, correo: {inCorreo}, contraseña: {inPass}, confirmar contraseña: {inConfirmar}, TYC: {inTYC}"
+        #print(values)
+        if inPass == inConfirmar and inTYC != False:
+           
+           password_hashed = generate_password_hash(inPass) 
+           sqlCreateUsuario = "INSERT INTO usuarios(Name_user, email_user, pass_user, Apellidos_user) VALUES(%s,%s,%s,%s)"
+
+           CreateUsuario = database.connection.cursor()
+           CreateUsuario.execute(sqlCreateUsuario,(inNombre, inCorreo, password_hashed, inApellidos))
+           database.connection.commit()
+           CreateUsuario.close()
+
+           flash("La cuenta ha sido registrada", "SUCCESS")
+           return redirect("login")
 
     return render_template('formulario.html', form=form)
 

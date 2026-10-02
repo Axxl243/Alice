@@ -8,8 +8,11 @@ load_dotenv(dotenv_path=BASE_DIR / ".env")
 class config:
 
 #Variables de entorno para conexiones y servicios 
-    SECRET_KEY = os.getenv("APP_KEY")
+    SECRET_KEY = os.getenv("API_KEY")
 
     MYSQL_HOST = os.getenv("MYSQL_HOST")
+    MYSQL_USER = os.getenv("MYSQL_USER")
+    MYSQL_PASSWORD = os.getenv("MYSQL_PASSWORD")
+    MYSQL_DB = os.getenv("MYSQL_DATABASE")
 
 

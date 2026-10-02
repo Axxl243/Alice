@@ -19,8 +19,7 @@ PixelMarket
     <div>
         <form action="{{ url_for('registro') }}" method="POST">
             {{form.hidden_tag()}}
-            <!--label for="rNombre">Nombre(s):</!--label>-->
-            <!--input type="text" id="Nombre" name="Nombre" placeholder="Ingrese su nombre o nombres" required>-->
+            
             {{form.rNombre.label (class="form-label")}}
             {{form.rNombre(class="form-control")}}
             {% if form.rNombre.errors %}
@@ -39,9 +38,6 @@ PixelMarket
                    {% endfor %}
                 </div>
             {% endif %}
-
-            <!--<label for="rApellidos">Apellidos:</label> -->
-            <!--<input type="text" id="Apellidos" name="Apellidos" placeholder="Ingrese sus apellidos" required>-->   
             
             
             {{form.rCorreo.label (class="form-label")}}
@@ -54,11 +50,6 @@ PixelMarket
                 </div>
             {% endif %}
 
-            
-            <!--<br>
-            <label for="rCorreo">Correo:</label>
-            <input type="email" id="Correo" name="Correo" placeholder="Ingrese su correo electrónico" required>
-            <br>-->
 
             {{form.rPass.label (class="form-label")}}
             {{form.rPass(class="form-control")}}
@@ -90,9 +81,7 @@ PixelMarket
                 </div>
             {% endif %}
             <br>
-            <!--<input type="checkbox" id="rTYC" name="rTYC" required>
-            <label for="rTYC">Aceptar <a href="#">Terminos y Condiciones</a> del servicio</label> 
-            <br>-->
+    
             {{form.rSubmit(id="rSubmit", class="btn btn-primary", disabled=true)}}
             <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancelar</a>
         </form>
