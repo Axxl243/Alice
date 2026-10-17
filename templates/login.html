@@ -24,6 +24,8 @@
 
     <input class="btn btn-primary" type="submit" value="Iniciar sesion">
 
-    <p>{{msj}}</p>
+    <p>{{msj}}
+     No tienes una cuenta?<a href="{{ url_for('registro') }}">Crea una cuenta</a>
+    </p>
 </div>
 {%endblock%}

@@ -1,4 +1,4 @@
-from flask import Flask, flash, render_template, request, url_for, flash, redirect
+from flask import Flask, flash, render_template, request, url_for, flash, redirect, session
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import InputRequired, Email, Length, EqualTo, DataRequired
@@ -72,16 +72,56 @@ def login():
         logUser = request.form.get('lUser')
         logPass = request.form.get('lPass')
 
-        msj = f"Nombre: {logUser}, Contraseña: {logPass}"
+        if logUser and logPass:
+           Loginsql = "SELECT name_User, email_user, pass_user FROM usuarios WHERE email_user = %s"
+           loginCon = database.connection.cursor()
+           loginCon.execute(Loginsql,(logUser,))
+           reslogin = loginCon.fetchone()
+
+           if reslogin:
+               passDB = reslogin[2]
+               if check_password_hash(passDB, logPass):
+                   session['nameUser']= reslogin[0]
+                   session['emailUser']= reslogin[1]
+
+                   flash("Bienvenido a la pagina")
+                   redirect(url_for('perfil')) 
+
+               else:
+                flash("Los datos son incorrectos", "Peligro")
+
+        else:
+            flash("Ingrese los datos completos", "Peligro")    
+
+        #msj = f"Nombre: {logUser}, Contraseña: {logPass}"
 
         return render_template('login.html', msj=msj)
    
     return render_template('login.html', msj=msj)
 
 #Ruta de perfil
-@app.route('/perfil')
+@app.route('/perfil', methods = ['GET', 'POST'])
 def perfil():
-    return render_template('perfil.html')
+    consulta_perfil = database.connection.cursor()
+    sql_consulta = "SELECT * FROM usuarios" 
+    consulta_perfil.execute(sql_consulta)
+    res_consulta = consulta_perfil.fetchall()
+    usuarios=[]
+    if res_consulta:
+        for campo in res_consulta:
+            usuarios.append(
+               {
+                   "uid": campo[0],
+                   "unombre": campo[1],
+                   "uapellidos": campo[2],
+                   "ucorreo": campo[3],
+                   "upass": "pass"
+               }
+
+            )
+    else:
+        usuarios= None
+    return render_template('perfil.html', tabla = usuarios)
 
 #Ruta inventario 
 if __name__ == "__main__":

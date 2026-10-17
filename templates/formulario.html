@@ -19,6 +19,8 @@ PixelMarket
     <div>
         <form action="{{ url_for('registro') }}" method="POST">
             {{form.hidden_tag()}}
+
+            <!-- Librería de iconos Font Awesome -->
             
             {{form.rNombre.label (class="form-label")}}
             {{form.rNombre(class="form-control")}}
