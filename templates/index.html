@@ -1,11 +1,45 @@
-{% extends 'Plantilla.html' %} 
+{% extends "Plantilla.html" %}
 
-{% block titulo %} 
+{% block titulo %}Inicio{% endblock %}
 
-{% endblock %} 
+{% block main %}
 
-{% block cabecera %} 
+{% if not request.args.get('q') and not categoria %}
+<section class="hero">
+    <div>
+        <h2>Tu tienda de videojuegos</h2>
+        <p>Consolas, juegos y accesorios al mejor precio.</p>
+        <a href="#productos" class="btn-hero">Ver novedades</a>
+    </div>
+</section>
+{% endif %}
 
-Pagina de inicio 
+<section class="productos" id="productos">
+    <h2>
+        {% if request.args.get('q') %}Resultados para "{{ request.args.get('q') }}"
+        {% elif categoria %}{{ categoria }}
+        {% else %}Novedades{% endif %}
+    </h2>
 
-{% endblock %} 
+    {% if productos %}
+    <div class="grid">
+        {% for p in productos %}
+        <article class="card-producto">
+            {% if p.imagen %}
+                <img src="{{ url_for('static', filename='img/' ~ p.imagen) }}" alt="{{ p.nombre }}">
+            {% else %}
+                <div class="sin-imagen">🎮</div>
+            {% endif %}
+            <span class="etiqueta">{{ p.categoria }}</span>
+            <h3>{{ p.nombre }}</h3>
+            <p class="precio">${{ "%.2f"|format(p.precio) }}</p>
+            <button type="button" class="btn-agregar">Agregar al carrito</button>
+        </article>
+        {% endfor %}
+    </div>
+    {% else %}
+        <p class="vacio">Todavía no hay productos para mostrar.</p>
+    {% endif %}
+</section>
+
+{% endblock %}

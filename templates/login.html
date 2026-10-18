@@ -1,31 +1,28 @@
-{%extends 'Plantilla.html'%}
-{%block title%}
-    Login
-{%endblock%}
+{% extends 'Plantilla.html' %}
 
-{% block cabecera %}
-    Iniciar sesion
-{% endblock%}
-    
-{%block main%}
-<div>
+{% block titulo %}Login{% endblock %}
 
-    <form action = "/login" method = "POST">
-        <label for="logUser">Usuario</label>
-        <input type="text" name="logUser" id="logUser" placeholder= "ingrese su Usuario" required>
+{% block cabecera %}Iniciar sesión{% endblock %}
+
+{% block main %}
+<div class="card-form">
+    <form action="{{ url_for('login') }}" method="POST">
+        <div class="mb-3">
+            <label for="logUser" class="form-label">Correo</label>
+            <input type="email" class="form-control" name="logUser" id="logUser" placeholder="ingrese su correo" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="logPass" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" name="logPass" id="logPass" placeholder="ingrese su contraseña" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Iniciar sesión</button>
     </form>
 
-    
-    <div class="form-group">
-        <label for="logPass">Contraseña</label>
-        <input type="text" class="form-control" name="logPass" id="logPass" aria-describedby="helpid" placeholder= "ingrese su Contraseña">
-        <small id="logPass" class="form-text" text-muted>Mensaje de error</small>
-    </div>
-
-    <input class="btn btn-primary" type="submit" value="Iniciar sesion">
-
-    <p>{{msj}}
-     No tienes una cuenta?<a href="{{ url_for('registro') }}">Crea una cuenta</a>
+    <p class="mt-3">
+        {{ msj }}
+        ¿No tienes una cuenta? <a href="{{ url_for('registro') }}">Crea una cuenta</a>
     </p>
 </div>
-{%endblock%}
+{% endblock %}

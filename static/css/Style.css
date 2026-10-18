@@ -7,137 +7,243 @@
     }
 }
 
-*{
-    box-sizing: border-box;
-}
-
-
-body{
- background-color: rgb(182, 20, 82);
-    color: rgb(86, 45, 184);
-    text-align: center;
-}
-
-.nav-list {
-  list-style: none;
-  display: flex;
-  gap: 100px;
-  justify-content: center;
-}
-
-.nav-list a{
-text-decoration: none;
-color: #F5F5DC;
-border: 1px solid #F5F5DC;
-border-radius: 20px;
-padding: 20px;
-display: inline-block;
- margin-bottom: 50px; /*separa las cosas de los demas*/
-
-}
-header{
-    border: rgb(156, 70, 206) 10px solid;
-       margin-bottom: 50px;
-      padding: 10PX;
-      border-radius: 20px;
-}
-main{
-
-  margin: 0 auto;
-    padding: 10PX;
-      border-radius: 10px;
-      text-align: center;
-      max-width: 600px;
-}
-
-.boxt{
-    
-  justify-content: center;
- 
-}
-  
-  .boxt {
-  max-width: 300px;
-  border: rgb(23, 23, 184) 10px solid ;
-  border-radius: 12px;
-  padding: 20px;
+:root {
+    --bg: #0f0b1e;
+    --surface: #1a1330;
+    --surface-2: #241a42;
+    --morado: #a855f7;
+    --morado-osc: #7c3aed;
+    --texto: #ece8f8;
+    --suave: #a79fc4;
+    --radio: 12px;
 }
  
-
-  
-  .boxp {
-  max-width: 300px;
-  border: rgb(91, 91, 92) 10px solid ;
-  border-radius: 12px;
-  padding: 20px;
-}
- .Caja {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-}
-
+* { box-sizing: border-box; }
+ 
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
-    background: #1a1a1a;
-    font-family: 'Arial', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    color: var(--texto);
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
-
-.hover-container {
+ 
+a { color: var(--morado); }
+ 
+/* ---------- Barra superior ---------- */
+.topbar {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: .9rem 2rem;
+    background: var(--surface);
+    border-bottom: 2px solid var(--morado-osc);
+    flex-wrap: wrap;
+}
+ 
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--texto);
+}
+.logo span { color: var(--morado); }
+ 
+.buscador {
+    flex: 1;
+    display: flex;
+    min-width: 220px;
+    max-width: 600px;
+}
+.buscador input {
+    flex: 1;
+    padding: .55rem 1rem;
+    border: 2px solid var(--morado-osc);
+    border-right: none;
+    border-radius: 999px 0 0 999px;
+    background: var(--bg);
+    color: var(--texto);
+    outline: none;
+}
+.buscador button {
+    padding: .55rem 1.2rem;
+    border: none;
+    border-radius: 0 999px 999px 0;
+    background: var(--morado-osc);
+    color: #fff;
+    cursor: pointer;
+}
+.buscador button:hover { background: var(--morado); }
+ 
+.acciones { display: flex; align-items: center; gap: 1rem; margin-left: auto; }
+.acciones a { color: var(--texto); text-decoration: none; }
+.acciones a:hover { color: var(--morado); }
+.btn-registro {
+    padding: .4rem 1rem;
+    border: 1px solid var(--morado);
+    border-radius: 999px;
+}
+ 
+/* ---------- Categorías ---------- */
+.categorias {
+    display: flex;
+    gap: 1.5rem;
+    padding: .7rem 2rem;
+    background: var(--surface-2);
+    overflow-x: auto;
+}
+.categorias a {
+    color: var(--texto);
+    text-decoration: none;
+    white-space: nowrap;
+    padding-bottom: 2px;
+    border-bottom: 2px solid transparent;
+}
+.categorias a:hover { border-bottom-color: var(--morado); }
+ 
+/* ---------- Contenido ---------- */
+#flashes { max-width: 900px; margin: 1rem auto 0; padding: 0 1rem; width: 100%; }
+ 
+.page-title { text-align: center; margin: 2rem 0 0; font-size: 1.8rem; }
+.page-title:empty { display: none; }
+ 
+main {
+    flex: 1;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 3rem;
+}
+ 
+/* Tarjeta para login / registro */
+.card-form {
+    max-width: 440px;
+    margin: 1.5rem auto;
+    padding: 2rem;
+    background: var(--surface);
+    border: 1px solid var(--morado-osc);
+    border-radius: var(--radio);
+}
+ 
+/* ---------- Hero ---------- */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 260px;
+    margin-bottom: 2.5rem;
+    padding: 2rem;
+    text-align: center;
+    border-radius: var(--radio);
+    background: linear-gradient(135deg, var(--morado-osc), #db2777);
+}
+.hero h2 { font-size: 2.2rem; margin-bottom: .5rem; }
+.btn-hero {
     display: inline-block;
-    position: relative;
+    margin-top: 1rem;
+    padding: .7rem 1.6rem;
+    border-radius: 999px;
+    background: #fff;
+    color: var(--morado-osc);
+    font-weight: 600;
+    text-decoration: none;
 }
-
-.explosive-text {
+ 
+/* ---------- Productos ---------- */
+.productos h2 { margin-bottom: 1rem; }
+ 
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 1.2rem;
+}
+ 
+.card-producto {
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+    padding: 1rem;
+    background: var(--surface);
+    border: 1px solid transparent;
+    border-radius: var(--radio);
+    transition: transform .2s, border-color .2s;
+}
+.card-producto:hover { transform: translateY(-4px); border-color: var(--morado); }
+ 
+.card-producto img,
+.sin-imagen {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.sin-imagen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 3rem;
-    color: #21926d;
-    letter-spacing: 0.1em;
-    display: inline-block;
-    position: relative;
-    transition: transform 0.3s ease-out;
+    background: var(--surface-2);
 }
-
-.explosive-text:hover {
-    transform: scale(1.1);
+ 
+.etiqueta { font-size: .75rem; color: var(--suave); text-transform: uppercase; }
+.card-producto h3 { font-size: 1rem; margin: 0; }
+.precio { font-size: 1.25rem; font-weight: 700; color: var(--morado); margin: 0; }
+ 
+.btn-agregar {
+    margin-top: auto;
+    padding: .55rem;
+    border: none;
+    border-radius: 8px;
+    background: var(--morado-osc);
+    color: #fff;
+    cursor: pointer;
 }
-
+.btn-agregar:hover { background: var(--morado); }
+ 
+.vacio { color: var(--suave); text-align: center; padding: 2rem 0; }
+ 
+/* ---------- Footer ---------- */
+.pie {
+    padding: 1.5rem;
+    text-align: center;
+    background: var(--surface);
+    color: var(--suave);
+    border-top: 2px solid var(--morado-osc);
+}
+.pie p { margin: 0; }
+ 
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+    .topbar { padding: .8rem 1rem; }
+    .acciones { margin-left: 0; }
+    .hero h2 { font-size: 1.6rem; }
+}
+ 
+/* ---------- Estilos anteriores (por si perfil.html los usa) ---------- */
+.boxt { max-width: 300px; border: rgb(23, 23, 184) 10px solid; border-radius: 12px; padding: 20px; }
+.boxp { max-width: 300px; border: rgb(91, 91, 92) 10px solid; border-radius: 12px; padding: 20px; }
+.Caja { display: flex; justify-content: center; gap: 40px; }
+ 
+.hover-container { display: inline-block; position: relative; }
+.explosive-text {
+    font-size: 3rem; color: #21926d; letter-spacing: .1em;
+    display: inline-block; position: relative; transition: transform .3s ease-out;
+}
+.explosive-text:hover { transform: scale(1.1); }
 .explosive-text:hover::before,
 .explosive-text:hover::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 200%;
-    height: 200%;
-    border-radius: 50%;
+    content: ''; position: absolute; top: 50%; left: 50%;
+    width: 200%; height: 200%; border-radius: 50%;
     transform: translate(-50%, -50%) scale(0);
-    animation: burst 0.8s ease-out forwards;
+    animation: burst .8s ease-out forwards;
 }
-
-.explosive-text:hover::before {
-    background: radial-gradient(circle, rgba(255, 0, 150, 0.6), transparent);
-    z-index: -1;
-}
-
-.explosive-text:hover::after {
-    background: radial-gradient(circle, rgba(0, 200, 255, 0.6), transparent);
-    z-index: -2;
-}
-
+.explosive-text:hover::before { background: radial-gradient(circle, rgba(255,0,150,.6), transparent); z-index: -1; }
+.explosive-text:hover::after  { background: radial-gradient(circle, rgba(0,200,255,.6), transparent); z-index: -2; }
 @keyframes burst {
-    0% {
-        transform: translate(-50%, -50%) scale(0);
-        opacity: 1;
-    }
-    70% {
-        opacity: 0.8;
-    }
-    100% {
-        transform: translate(-50%, -50%) scale(1.5);
-        opacity: 0;
-    }
+    0%   { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+    70%  { opacity: .8; }
+    100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
 }
+ 
