@@ -1,75 +1,36 @@
 {% extends 'Plantilla.html' %}
 
-{% block titulo %}
-    Perfil
-{% endblock %}
+{% block titulo %}Mi perfil{% endblock %}
 
-{% block cabecera %}
-    Perfil del [USERNAME]
-{% endblock %}
+{% block cabecera %}Mi perfil{% endblock %}
 
 {% block main %}
-    <div id="Perfil">
-    
-    <section>
+<div class="perfil-card">
+
+    <!-- Círculo con la inicial del nombre -->
+    <div class="perfil-avatar">{{ (usuario.nombre or '?')[0]|upper }}</div>
+
+    <h2 class="perfil-nombre">{{ usuario.nombre }} {{ usuario.apellidos }}</h2>
+    <p class="perfil-correo">{{ usuario.correo }}</p>
+
+    <dl class="perfil-datos">
         <div>
-            [INFORMACION DEL USUARIO]
+            <dt>Nombre</dt>
+            <dd>{{ usuario.nombre }}</dd>
         </div>
-        
-        <header>
-                    <h3>Informacion-</h3>
-                </header>
-                <article>
-                    <table border="1">
-                        <tr>
-                            <td>Nombre</td>
-                            <td>Apellidos</td>
-                            <td>Colaborador</td>
-                            <td>Fecha de Ingreso</td>
-                        </tr>
-                        <tr>
-                            <td colspan="4">Datos de contacto</td>
-                        </tr>
-                        <tr>
-                            <td colspan="3">Direccion</td>
-                            <td>Codigo Postal</td>
-                            </tr>
-                        <tr>
-                            <td>Telefono</td>
-                            <td>Correo</td>
-                        </tr>
-                    </table>
-                </article>
-            </div>
-        </section>
+        <div>
+            <dt>Apellidos</dt>
+            <dd>{{ usuario.apellidos }}</dd>
         </div>
-        {% if tabla %}
-            <table class="table table-striped table-inverse table-responsive">
-                <thead class="thead-inverse">
-                    <tr>
-                        <th>ID</th>
-                        <th>NOMBRE</th>
-                        <th>CORREO</th>
-                        <th>CONTRASEÑA</th>
-                        <th>OPCIONES</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for campo in tabla %}
-                <tr>
-                    <td scope="row">{{campo.uid}}</td>
-                    <td>{{ campo.unombre }}</td>
-                    <td>{{ campo.ucorreo }}</td>
-                    <td>{{ campo.upass }}</td>
-                    <td>
-                        <a href="/editar/{{ campo.uid }}" class="btn btn-sm btn-primary">Editar</a>
-                        <a href="/borrar/{{ campo.uid }}" class="btn btn-sm btn-danger">Borrar</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </table>
-        {% endif %}
+        <div>
+            <dt>Correo</dt>
+            <dd>{{ usuario.correo }}</dd>
+        </div>
+    </dl>
+
+    <div class="perfil-botones">
+        <a href="{{ url_for('index') }}" class="btn btn-primary">Ir a la tienda</a>
+        <a href="{{ url_for('logout') }}" class="btn btn-outline-secondary">Cerrar sesión</a>
     </div>
-
-
+</div>
 {% endblock %}

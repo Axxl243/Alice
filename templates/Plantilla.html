@@ -29,13 +29,23 @@
         </nav>
     </header>
 
-    <!-- Menú de categorías -->
-    <nav class="categorias">
+    <!-- Menú principal: marcas (Nintendo, Sony, Microsoft...) -->
+    <nav class="menu-principal">
         <a href="{{ url_for('index') }}">Inicio</a>
+        {% for m in marcas_menu %}
+            <a href="{{ url_for('index', marca=m) }}">{{ m }}</a>
+        {% endfor %}
+    </nav>
+
+    <!-- Franja secundaria: categorías (Consolas, Videojuegos...) -->
+    {% if categorias_menu %}
+    <nav class="menu-secundario">
+        <span>Categorías:</span>
         {% for c in categorias_menu %}
             <a href="{{ url_for('index', categoria=c) }}">{{ c }}</a>
         {% endfor %}
     </nav>
+    {% endif %}
 
     <!-- Mensajes flash -->
     <div id="flashes">

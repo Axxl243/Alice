@@ -1,12 +1,4 @@
-@media only screen and (max-width: 600px) {
-    body{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-}
-
+/* ============ PixelMarket ============ */
 :root {
     --bg: #0f0b1e;
     --surface: #1a1330;
@@ -17,9 +9,9 @@
     --suave: #a79fc4;
     --radio: 12px;
 }
- 
+
 * { box-sizing: border-box; }
- 
+
 body {
     margin: 0;
     min-height: 100vh;
@@ -29,9 +21,9 @@ body {
     color: var(--texto);
     font-family: 'Segoe UI', Arial, sans-serif;
 }
- 
+
 a { color: var(--morado); }
- 
+
 /* ---------- Barra superior ---------- */
 .topbar {
     display: flex;
@@ -42,7 +34,7 @@ a { color: var(--morado); }
     border-bottom: 2px solid var(--morado-osc);
     flex-wrap: wrap;
 }
- 
+
 .logo {
     font-size: 1.8rem;
     font-weight: 700;
@@ -50,7 +42,7 @@ a { color: var(--morado); }
     color: var(--texto);
 }
 .logo span { color: var(--morado); }
- 
+
 .buscador {
     flex: 1;
     display: flex;
@@ -76,7 +68,7 @@ a { color: var(--morado); }
     cursor: pointer;
 }
 .buscador button:hover { background: var(--morado); }
- 
+
 .acciones { display: flex; align-items: center; gap: 1rem; margin-left: auto; }
 .acciones a { color: var(--texto); text-decoration: none; }
 .acciones a:hover { color: var(--morado); }
@@ -85,30 +77,30 @@ a { color: var(--morado); }
     border: 1px solid var(--morado);
     border-radius: 999px;
 }
- 
+
 /* ---------- Categorías ---------- */
-.categorias {
+.menu-principal {
     display: flex;
     gap: 1.5rem;
     padding: .7rem 2rem;
     background: var(--surface-2);
     overflow-x: auto;
 }
-.categorias a {
+.menu-principal a {
     color: var(--texto);
     text-decoration: none;
     white-space: nowrap;
     padding-bottom: 2px;
     border-bottom: 2px solid transparent;
 }
-.categorias a:hover { border-bottom-color: var(--morado); }
- 
+.menu-principal a:hover { border-bottom-color: var(--morado); }
+
 /* ---------- Contenido ---------- */
 #flashes { max-width: 900px; margin: 1rem auto 0; padding: 0 1rem; width: 100%; }
- 
+
 .page-title { text-align: center; margin: 2rem 0 0; font-size: 1.8rem; }
 .page-title:empty { display: none; }
- 
+
 main {
     flex: 1;
     width: 100%;
@@ -116,7 +108,7 @@ main {
     margin: 0 auto;
     padding: 1.5rem 1rem 3rem;
 }
- 
+
 /* Tarjeta para login / registro */
 .card-form {
     max-width: 440px;
@@ -126,7 +118,7 @@ main {
     border: 1px solid var(--morado-osc);
     border-radius: var(--radio);
 }
- 
+
 /* ---------- Hero ---------- */
 .hero {
     display: flex;
@@ -150,16 +142,16 @@ main {
     font-weight: 600;
     text-decoration: none;
 }
- 
+
 /* ---------- Productos ---------- */
 .productos h2 { margin-bottom: 1rem; }
- 
+
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
     gap: 1.2rem;
 }
- 
+
 .card-producto {
     display: flex;
     flex-direction: column;
@@ -171,7 +163,7 @@ main {
     transition: transform .2s, border-color .2s;
 }
 .card-producto:hover { transform: translateY(-4px); border-color: var(--morado); }
- 
+
 .card-producto img,
 .sin-imagen {
     width: 100%;
@@ -186,11 +178,11 @@ main {
     font-size: 3rem;
     background: var(--surface-2);
 }
- 
+
 .etiqueta { font-size: .75rem; color: var(--suave); text-transform: uppercase; }
 .card-producto h3 { font-size: 1rem; margin: 0; }
 .precio { font-size: 1.25rem; font-weight: 700; color: var(--morado); margin: 0; }
- 
+
 .btn-agregar {
     margin-top: auto;
     padding: .55rem;
@@ -201,9 +193,9 @@ main {
     cursor: pointer;
 }
 .btn-agregar:hover { background: var(--morado); }
- 
+
 .vacio { color: var(--suave); text-align: center; padding: 2rem 0; }
- 
+
 /* ---------- Footer ---------- */
 .pie {
     padding: 1.5rem;
@@ -213,19 +205,19 @@ main {
     border-top: 2px solid var(--morado-osc);
 }
 .pie p { margin: 0; }
- 
+
 /* ---------- Responsive ---------- */
 @media (max-width: 600px) {
     .topbar { padding: .8rem 1rem; }
     .acciones { margin-left: 0; }
     .hero h2 { font-size: 1.6rem; }
 }
- 
+
 /* ---------- Estilos anteriores (por si perfil.html los usa) ---------- */
 .boxt { max-width: 300px; border: rgb(23, 23, 184) 10px solid; border-radius: 12px; padding: 20px; }
 .boxp { max-width: 300px; border: rgb(91, 91, 92) 10px solid; border-radius: 12px; padding: 20px; }
 .Caja { display: flex; justify-content: center; gap: 40px; }
- 
+
 .hover-container { display: inline-block; position: relative; }
 .explosive-text {
     font-size: 3rem; color: #21926d; letter-spacing: .1em;
@@ -246,4 +238,66 @@ main {
     70%  { opacity: .8; }
     100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
 }
- 
+
+/* ---------- Perfil ---------- */
+.perfil-card {
+    max-width: 480px;
+    margin: 1.5rem auto;
+    padding: 2rem;
+    text-align: center;
+    background: var(--surface);
+    border: 1px solid var(--morado-osc);
+    border-radius: var(--radio);
+}
+
+.perfil-avatar {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--morado-osc), #db2777);
+}
+
+.perfil-nombre { margin: 0; font-size: 1.5rem; }
+.perfil-correo { color: var(--suave); margin: .2rem 0 1.5rem; }
+
+.perfil-datos { margin: 0 0 1.5rem; text-align: left; }
+.perfil-datos div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: .7rem 0;
+    border-bottom: 1px solid var(--surface-2);
+}
+.perfil-datos dt { color: var(--suave); font-weight: 500; }
+.perfil-datos dd { margin: 0; }
+
+.perfil-botones { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; }
+
+/* ---------- Franja secundaria ---------- */
+.menu-secundario {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    padding: .6rem 2rem;
+    background: var(--bg);
+    border-bottom: 1px solid var(--surface-2);
+    overflow-x: auto;
+}
+.menu-secundario span { color: var(--suave); font-size: .85rem; }
+.menu-secundario a {
+    padding: .2rem .8rem;
+    font-size: .85rem;
+    white-space: nowrap;
+    color: var(--texto);
+    text-decoration: none;
+    border: 1px solid var(--surface-2);
+    border-radius: 999px;
+}
+.menu-secundario a:hover { border-color: var(--morado); color: var(--morado); }

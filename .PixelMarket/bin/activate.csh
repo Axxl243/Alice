@@ -13,13 +13,13 @@ setenv VIRTUAL_ENV /home/axel-eduard/Alice/.PixelMarket
 
 set _OLD_VIRTUAL_PATH="$PATH"
 setenv PATH "$VIRTUAL_ENV/"bin":$PATH"
+setenv VIRTUAL_ENV_PROMPT .PixelMarket
 
 
 set _OLD_VIRTUAL_PROMPT="$prompt"
 
 if (! "$?VIRTUAL_ENV_DISABLE_PROMPT") then
-    set prompt = '(.PixelMarket) '"$prompt"
-    setenv VIRTUAL_ENV_PROMPT '(.PixelMarket) '
+    set prompt = "(".PixelMarket") $prompt:q"
 endif
 
 alias pydoc python -m pydoc

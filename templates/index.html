@@ -4,7 +4,7 @@
 
 {% block main %}
 
-{% if not request.args.get('q') and not categoria %}
+{% if not request.args.get('q') and not categoria and not marca %}
 <section class="hero">
     <div>
         <h2>Tu tienda de videojuegos</h2>
@@ -17,7 +17,9 @@
 <section class="productos" id="productos">
     <h2>
         {% if request.args.get('q') %}Resultados para "{{ request.args.get('q') }}"
+        {% elif categoria and marca %}{{ categoria }} · {{ marca }}
         {% elif categoria %}{{ categoria }}
+        {% elif marca %}{{ marca }}
         {% else %}Novedades{% endif %}
     </h2>
 
@@ -30,7 +32,7 @@
             {% else %}
                 <div class="sin-imagen">🎮</div>
             {% endif %}
-            <span class="etiqueta">{{ p.categoria }}</span>
+            <span class="etiqueta">{{ p.categoria }} · {{ p.compania }}</span>
             <h3>{{ p.nombre }}</h3>
             <p class="precio">${{ "%.2f"|format(p.precio) }}</p>
             <button type="button" class="btn-agregar">Agregar al carrito</button>
